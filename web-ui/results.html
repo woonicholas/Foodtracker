@@ -1,0 +1,79 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Food Finder</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SitePoint">
+
+  <script src="clamp.js"></script>
+  <link rel="stylesheet" href="css/styles.css?v=1.0">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+
+<body id = 'bottom-bg'>
+    <div class='container-fluid' >
+        <div class='row header' id='background' >
+          <h1 class='py-4 mx-5'>FoodFinder</h1>
+          <div class='form-group px-2 py-2'>
+            <label>Search</label>
+            <input type='text' class='form-control' id='queryInput'>
+          </div>
+          <div class='form-group px-2 py-2'>
+            <label>Location</label>
+            <input type='text' class='form-control' id='locationInput'>
+          </div>
+          
+          <div class ='py-4 mx-3 my-3'><button class='btn btn-light'>Search</button> <button  class='btn btn-success'>Randomize</button></div>
+        </div>
+        
+    </div>
+        <!-- <div class='row my-5 py-5'></div> -->
+          <!-- <div class='row justify-content-center'>
+            <form class='col-3 search'>
+              <button class='btn btn-light'>Search</button> <button  class='btn btn-success'>Randomize</button>
+            </form>
+          </div> -->
+    
+    <!-- <div class='row justify-content-center'>
+        <h1 class='py-2 bg-light'>Results</h1>
+    </div> -->
+    <hr></hr>
+    <div class = 'container col-6' >
+        <div class = 'listContainer border rounded'>
+            <div class = 'row'>
+                <div class = 'col-4'>
+                    <img src = 'images/placeholder_img.jpg' class = 'rounded p-2' id = 'listImage'>
+                </div>
+                <div class = 'col-6'>
+                    <h2 class = "pt-2">Chicken House</h2>
+                    <p>Seafood. Mexican. Sushi Bar.</p> 
+                    <img src = 'images/location_img.png' class = "pb-1"> 1 Forest, Irvine, CA 92612
+                    <p><img src = 'images/time_img.png'> 07:00am - 23:00pm</p>
+                    <p id='clampjs'>Lorem Ipsum is, remaining essentially unchanged. It was popularised in the 1960s with the release of Letrase</p>
+                </div>
+            </div>
+        </div>
+        <hr></hr>
+        <div class = 'listContainer border rounded'>
+            <div class = 'row'>
+                <div class = 'col-4'>
+                    <img src = 'images/placeholder_img.jpg' class = 'rounded p-2' id = 'listImage'>
+                </div>
+                <div class = 'col-6'>
+                    <h2 >Restaurant Name</h2>
+                    <p>Seafood. Mexican. Sushi Bar.</p>
+                    
+                    <p id='clampjs'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letrase</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr></hr>
+
+</body>
+</html>

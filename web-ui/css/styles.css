@@ -1,0 +1,36 @@
+#listImage{
+    height: 250px;
+    width: 250px;
+}
+
+.listContainer{
+    width:800px;
+    padding-left: 15px;
+    border-color: #8D9EA6; 
+}
+/* 
+.test{
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+} */
+
+.header {
+    background-color: darkgray;
+    color: white;
+}
+
+.search label {
+    color: white;
+    font-size: 1.5em;
+}
+
+#background{
+    background-image: url("../images/cooking.jpg");
+    height: 10rem;
+}
+
+#bottom-bg{
+    /* color: #8D9EA6; */
+    background-color: #f2edd9;
+}
