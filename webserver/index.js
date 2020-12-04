@@ -127,19 +127,6 @@ function restaurantApiRequest(term, latitude, longitude, location) {
         }
     }).then( (response) => {
         return response['businesses'];
-         let r = [];
-
-        let q = async.queue(async(task, callback)=> {
-            let business = await restaurantByIdApiRequest(task['id']);
-            r.push(business);
-            callback();
-        }, 1);
-
-        q.push( response['businesses']);
-
-        q.drain();
-
-        return r;
 
     }).catch((err) => {
         console.error(err);
