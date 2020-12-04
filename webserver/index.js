@@ -1,10 +1,32 @@
 const express = require('express');
+const async = require('async');
 const router = express.Router();
 
 const fetch = require('node-fetch');
 
-restaurantApiRequest(' tapioca express', "", "", "Convoy San Diego");
-//restaurantByIdApiRequest('WavvLdfdP6g8aZTtbBQHTw');
+
+getRestaurants(' ramen', "", "", "Convoy San Diego").then(
+    data=>{
+        console.log(data);
+    }
+);
+
+async function getRestaurants(term, latitude, longitude, location) {
+    let businesses = [];
+
+    let q = async.queue(async(task, callback)=> {
+        let business = await restaurantByIdApiRequest(task['id']);
+        businesses.push(business);
+        callback();
+    }, 1);
+
+    q.push( await restaurantApiRequest(term, latitude, longitude, location) );
+
+    await q.drain();
+
+    return businesses;
+}
+
 
 /***
  * https://developer.edamam.com/edamam-docs-recipe-api
@@ -68,19 +90,20 @@ function recipeApiRequest(query) {
     })
 }
 
+
+
 /***
  * https://www.yelp.com/developers/documentation/v3/business_search
  ***/
 function restaurantApiRequest(term, latitude, longitude, location) {
     let clientID = 'rII8Y9mwHKyzKVlEWGQ2QA';
-    let apiKey = 'wuz14axWIJaDHRSx5gVUlC8KBXn9bVG_vtFOxxYOvuNxUAs7LQ6Mmfco' +
-        'Xyl48ynDRjJ3xnNuUM2to6uI617pdPG4AIcJMdBzh9cYF3zGV2Dm9we7zyNYZUH52QvIX3Yx';
+    let apiKey = '2EtwaW2hnykRITz0ORDZc3XSvJ2l7zWITdyB7ctm0V7wY-wULqbCiDso-1chRYxG_sw7-7EsrVoUBelqrDvaukyPzpVn' +
+        'gMRYWiGtYk4j6va7jiMGNQ8Nlyh45EvKX3Yx';
 
     let headers = {
         'Content-Type': 'application/x-www-form-urlencoded',
         'Authorization': 'Bearer ' + apiKey
     }
-
 
     let termFormatted, locationFormatted, latitudeFormatted, longitudeFormatted, url;
 
@@ -102,9 +125,22 @@ function restaurantApiRequest(term, latitude, longitude, location) {
         } else {
             console.error(response);
         }
-    }).then((response) => {
-        console.log(response);
-        return response;
+    }).then( (response) => {
+        return response['businesses'];
+         let r = [];
+
+        let q = async.queue(async(task, callback)=> {
+            let business = await restaurantByIdApiRequest(task['id']);
+            r.push(business);
+            callback();
+        }, 1);
+
+        q.push( response['businesses']);
+
+        q.drain();
+
+        return r;
+
     }).catch((err) => {
         console.error(err);
     })
@@ -115,15 +151,15 @@ function restaurantApiRequest(term, latitude, longitude, location) {
  ***/
 function restaurantByIdApiRequest(id) {
     let clientID = 'rII8Y9mwHKyzKVlEWGQ2QA';
-    let apiKey = 'wuz14axWIJaDHRSx5gVUlC8KBXn9bVG_vtFOxxYOvuNxUAs7LQ6Mmfco' +
-        'Xyl48ynDRjJ3xnNuUM2to6uI617pdPG4AIcJMdBzh9cYF3zGV2Dm9we7zyNYZUH52QvIX3Yx';
+    let apiKey = '2EtwaW2hnykRITz0ORDZc3XSvJ2l7zWITdyB7ctm0V7wY-wULqbCiDso-1chRYxG_sw7-7EsrVoUBelqrDvaukyPzpVn' +
+        'gMRYWiGtYk4j6va7jiMGNQ8Nlyh45EvKX3Yx';
 
     let headers = {
         'Content-Type': 'application/x-www-form-urlencoded',
         'Authorization': 'Bearer ' + apiKey
     }
 
-    let url = 'https://api.yelp.com/v3/businesses/' +id;
+    let url = 'https://api.yelp.com/v3/businesses/' + id;
     console.log(url);
 
     return fetch(url, {
@@ -144,7 +180,7 @@ function restaurantByIdApiRequest(id) {
             image_url: response['image_url'],
             is_closed: response['is_closed'],
             url: response['url'],
-            display_phone:response['display_phone'],
+            display_phone: response['display_phone'],
             categories: response['categories'],
             rating: response['rating'],
             location: response['location']['display_address'],
