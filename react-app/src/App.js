@@ -1,5 +1,6 @@
 import React from 'react';
-import Home from './components/home/Home';
+import Home from './components/Home';
+import Results from './components/Results'
 import {
   BrowserRouter,
   Switch,
@@ -12,6 +13,9 @@ function App() {
     <BrowserRouter>
       <Route path ="/">
         <Home/>
+      </Route>
+      <Route path ="/Results">
+        <Results/>
       </Route>
     </BrowserRouter>
   );
