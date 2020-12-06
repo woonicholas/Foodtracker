@@ -11,11 +11,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4781863c-8a75-4adc-8a7b-ab700744bbd0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/webserver/app.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webserver/bin/www" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webserver/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/webserver/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webserver/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/webserver/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +62,7 @@
       <workItem from="1606712631163" duration="25261000" />
       <workItem from="1607066142782" duration="645000" />
       <workItem from="1607067765200" duration="5626000" />
-      <workItem from="1607075998350" duration="22795000" />
+      <workItem from="1607075998350" duration="23615000" />
     </task>
     <servers />
   </component>
@@ -115,10 +112,10 @@
     </state>
     <state x="297" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/1920.0.1080.1880/-3440.-150.3440.1400@0.0.1920.1040" timestamp="1607088332405" />
     <state x="297" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/1920.0.1080.1880/0.0.1920.1040/-3440.-150.3440.1400@0.0.1920.1040" timestamp="1606964005033" />
-    <state x="-3184" y="160" width="1204" height="913" key="search.everywhere.popup" timestamp="1607210359969">
+    <state x="-3184" y="160" width="1204" height="913" key="search.everywhere.popup" timestamp="1607214876912">
       <screen x="-3440" y="-150" width="3440" height="1400" />
     </state>
-    <state x="-3184" y="160" width="1204" height="913" key="search.everywhere.popup/1920.0.1080.1880/0.0.1920.1040/-3440.-150.3440.1400@-3440.-150.3440.1400" timestamp="1607210359969" />
+    <state x="-3184" y="160" width="1204" height="913" key="search.everywhere.popup/1920.0.1080.1880/0.0.1920.1040/-3440.-150.3440.1400@-3440.-150.3440.1400" timestamp="1607214876912" />
     <state x="143" y="230" width="672" height="678" key="search.everywhere.popup/1920.0.1080.1880/0.0.1920.1040/-3440.-150.3440.1400@0.0.1920.1040" timestamp="1606872649097" />
   </component>
 </project>

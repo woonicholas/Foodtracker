@@ -5,13 +5,45 @@ const async = require('async');
 
 const fetch = require('node-fetch');
 
-var backoff = require('oibackoff').backoff({
-    algorithm  : 'exponential',
-    delayRatio : 0.2,
-    maxTries   : 5,
-});
+/***
+ * RETURNS ARRAY OF OBJECTS
+ *  [
+ *     {
+        "id": "HHtpR0RslupSQ99GIIwW5A",
+        "alias": "marufuku-ramen-sf-san-francisco",
+        "name": "Marufuku Ramen SF",
+        "image_url": "https://s3-media4.fl.yelpcdn.com/bphoto/ouK2VmW0SrI70jsJpTxJhw/o.jpg",
+        "is_closed": false,
+        "url": "https://www.yelp.com/biz/marufuku-ramen-sf-san-francisco?adjust_creative=rII8Y9mwHKyzKVlEWGQ2QA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_lookup&utm_source=rII8Y9mwHKyzKVlEWGQ2QA",
+        "display_phone": "(415) 872-9786",
+        "categories": [
+                        {
+                           "alias": "ramen",
+                           "title": "Ramen"
+                        }
+                      ],
+        "rating": 4.5,
+        "location": [
+                       "1581 Webster St",
+                       "Ste 235",
+                       "San Francisco, CA 94115"
+                    ],
+        "coordinates": {
+                          latitude": 37.785014,
+                          "longitude": -122.431842
+                       },
+        "hours": [
+                    {
+                        "is_overnight": false,
+                        "start": "1100",
+                        "end": "1400",
+                        "day": 0
+                    },
 
-
+                ]
+        },
+ *   ]
+ */
 router.get('/search/restaurant/:location/:term', function (req, res, next) {
     let location = req.params['location'];
     let term = req.params['term'];
@@ -44,7 +76,7 @@ async function getRestaurants(term, location) {
     return businesses;
 }
 
-async function getRestaurantDetail(id){
+async function getRestaurantDetail(id) {
     console.log(id);
     return await restaurantByIdApiRequest(id);
 }
