@@ -1,36 +1,145 @@
 const express = require('express');
-const async = require('async');
 const router = express.Router();
+
+const async = require('async');
 
 const fetch = require('node-fetch');
 
+var backoff = require('oibackoff').backoff({
+    algorithm  : 'exponential',
+    delayRatio : 0.2,
+    maxTries   : 5,
+});
 
-getRestaurants(' ramen', "", "", "Convoy San Diego").then(
-    data=>{
-        console.log(data);
-    }
-);
 
-async function getRestaurants(term, latitude, longitude, location) {
+router.get('/search/restaurant/:location/:term', function (req, res, next) {
+    let location = req.params['location'];
+    let term = req.params['term'];
+    getRestaurants(term, location).then(restaurants => {
+        console.log(restaurants);
+        res.json(restaurants);
+    })
+});
+
+router.get('/search/restaurant-details/:id', function (req, res, next) {
+    let id = req.params['id'];
+    getRestaurantDetail(id).then(restaurant => {
+        res.json(restaurant);
+    });
+});
+
+async function getRestaurants(term, location) {
     let businesses = [];
 
-    let q = async.queue(async(task, callback)=> {
+    let q = async.queue(async (task, callback) => {
         let business = await restaurantByIdApiRequest(task['id']);
         businesses.push(business);
         callback();
     }, 1);
 
-    q.push( await restaurantApiRequest(term, latitude, longitude, location) );
+    q.push(await restaurantApiRequest(term, location));
 
     await q.drain();
 
     return businesses;
 }
 
+async function getRestaurantDetail(id){
+    console.log(id);
+    return await restaurantByIdApiRequest(id);
+}
 
-/***
- * https://developer.edamam.com/edamam-docs-recipe-api
- */
+//https://www.yelp.com/developers/documentation/v3/business_search
+function restaurantApiRequest(term, location) {
+    let clientID = 'rII8Y9mwHKyzKVlEWGQ2QA';
+    let apiKey = '2EtwaW2hnykRITz0ORDZc3XSvJ2l7zWITdyB7ctm0V7wY-wULqbCiDso-1chRYxG_sw7-7EsrVoUBelqrDvaukyPzpVn' +
+        'gMRYWiGtYk4j6va7jiMGNQ8Nlyh45EvKX3Yx';
+
+    let headers = {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Authorization': 'Bearer ' + apiKey
+    }
+
+
+    let params = new URLSearchParams();
+    params.append('term', term);
+    params.append('location', location);
+
+    let termFormatted, locationFormatted, latitudeFormatted, longitudeFormatted, url;
+    //
+    // termFormatted = term.trim().replace(' ', '+');
+    // locationFormatted = (location !== "") ? '&location=' + location.trim().replace(' ', '+') : "";
+    // latitudeFormatted = (latitude !== "") ? '&latitude=' + latitude : "";
+    // longitudeFormatted = (longitude !== "") ? '&longitude=' + longitude : "";
+
+    url = 'https://api.yelp.com/v3/businesses/search?' + params;
+    console.log(url);
+
+    return fetch(url, {
+        method: 'GET',
+        headers: headers
+
+    }).then((response) => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            console.error(response);
+        }
+    }).then((response) => {
+        return response['businesses'];
+
+    }).catch((err) => {
+        console.error(err);
+    })
+}
+
+
+//https://www.yelp.com/developers/documentation/v3/business
+function restaurantByIdApiRequest(id) {
+    let clientID = 'rII8Y9mwHKyzKVlEWGQ2QA';
+    let apiKey = '2EtwaW2hnykRITz0ORDZc3XSvJ2l7zWITdyB7ctm0V7wY-wULqbCiDso-1chRYxG_sw7-7EsrVoUBelqrDvaukyPzpVn' +
+        'gMRYWiGtYk4j6va7jiMGNQ8Nlyh45EvKX3Yx';
+
+    let headers = {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Authorization': 'Bearer ' + apiKey
+    }
+
+    let url = 'https://api.yelp.com/v3/businesses/' + id;
+    console.log(url);
+
+    return fetch(url, {
+        method: 'GET',
+        headers: headers
+
+    }).then((response) => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            console.error(response);
+        }
+    }).then((response) => {
+        return {
+            id: response['id'],
+            alias: response['alias'],
+            name: response['name'],
+            image_url: response['image_url'],
+            is_closed: response['is_closed'],
+            url: response['url'],
+            display_phone: response['display_phone'],
+            categories: response['categories'],
+            rating: response['rating'],
+            location: response['location']['display_address'],
+            coordinates: response['coordinates'],
+            hours: response['hours'][0]['open']
+        };
+    }).catch((err) => {
+        console.error(err);
+    })
+}
+
+
+//https://developer.edamam.com/edamam-docs-recipe-api
 function recipeApiRequest(query) {
     let headers = {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -91,94 +200,5 @@ function recipeApiRequest(query) {
 }
 
 
-
-/***
- * https://www.yelp.com/developers/documentation/v3/business_search
- ***/
-function restaurantApiRequest(term, latitude, longitude, location) {
-    let clientID = 'rII8Y9mwHKyzKVlEWGQ2QA';
-    let apiKey = '2EtwaW2hnykRITz0ORDZc3XSvJ2l7zWITdyB7ctm0V7wY-wULqbCiDso-1chRYxG_sw7-7EsrVoUBelqrDvaukyPzpVn' +
-        'gMRYWiGtYk4j6va7jiMGNQ8Nlyh45EvKX3Yx';
-
-    let headers = {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Authorization': 'Bearer ' + apiKey
-    }
-
-    let termFormatted, locationFormatted, latitudeFormatted, longitudeFormatted, url;
-
-    termFormatted = term.trim().replace(' ', '+');
-    locationFormatted = (location !== "") ? '&location=' + location.trim().replace(' ', '+') : "";
-    latitudeFormatted = (latitude !== "") ? '&latitude=' + latitude : "";
-    longitudeFormatted = (longitude !== "") ? '&longitude=' + longitude : "";
-
-    url = 'https://api.yelp.com/v3/businesses/search?term=' + termFormatted + longitudeFormatted + latitudeFormatted + locationFormatted;
-    console.log(url);
-
-    return fetch(url, {
-        method: 'GET',
-        headers: headers
-
-    }).then((response) => {
-        if (response.ok) {
-            return response.json();
-        } else {
-            console.error(response);
-        }
-    }).then( (response) => {
-        return response['businesses'];
-
-    }).catch((err) => {
-        console.error(err);
-    })
-}
-
-/***
- * https://www.yelp.com/developers/documentation/v3/business
- ***/
-function restaurantByIdApiRequest(id) {
-    let clientID = 'rII8Y9mwHKyzKVlEWGQ2QA';
-    let apiKey = '2EtwaW2hnykRITz0ORDZc3XSvJ2l7zWITdyB7ctm0V7wY-wULqbCiDso-1chRYxG_sw7-7EsrVoUBelqrDvaukyPzpVn' +
-        'gMRYWiGtYk4j6va7jiMGNQ8Nlyh45EvKX3Yx';
-
-    let headers = {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Authorization': 'Bearer ' + apiKey
-    }
-
-    let url = 'https://api.yelp.com/v3/businesses/' + id;
-    console.log(url);
-
-    return fetch(url, {
-        method: 'GET',
-        headers: headers
-
-    }).then((response) => {
-        if (response.ok) {
-            return response.json();
-        } else {
-            console.error(response);
-        }
-    }).then((response) => {
-        return {
-            id: response['id'],
-            alias: response['alias'],
-            name: response['name'],
-            image_url: response['image_url'],
-            is_closed: response['is_closed'],
-            url: response['url'],
-            display_phone: response['display_phone'],
-            categories: response['categories'],
-            rating: response['rating'],
-            location: response['location']['display_address'],
-            coordinates: response['coordinates'],
-            hours: response['hours'][0]['open']
-        };
-    }).catch((err) => {
-        console.error(err);
-    })
-}
-
-
-
+module.exports = router;
 

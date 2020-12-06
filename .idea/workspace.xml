@@ -11,8 +11,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4781863c-8a75-4adc-8a7b-ab700744bbd0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/webserver/app.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webserver/bin/www" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webserver/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/webserver/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webserver/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/webserver/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,9 +44,14 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Documents/INF 133/a4-sleep-tracker-jzquinzon" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Documents/INF 133/a3-spotify-browser-in-angular-jzquinzon" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\John Quinzon\Desktop\SCHOOL\INF 133\Foodtracker\webserver\bin" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -56,7 +64,8 @@
       <workItem from="1606709350760" duration="1424000" />
       <workItem from="1606712631163" duration="25261000" />
       <workItem from="1607066142782" duration="645000" />
-      <workItem from="1607067765200" duration="5236000" />
+      <workItem from="1607067765200" duration="5626000" />
+      <workItem from="1607075998350" duration="22795000" />
     </task>
     <servers />
   </component>
@@ -79,19 +88,37 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1607067231460">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="-2114" y="220" key="FileChooserDialogImpl" timestamp="1607207606767">
+      <screen x="-3440" y="-150" width="3440" height="1400" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1080.1880/-3440.-150.3440.1400@0.0.1920.1040" timestamp="1607067231460" />
-    <state x="-2114" y="220" key="FileChooserDialogImpl/1920.0.1080.1880/0.0.1920.1040/-3440.-150.3440.1400@-3440.-150.3440.1400" timestamp="1606964516198" />
+    <state x="-2114" y="220" key="FileChooserDialogImpl/1920.0.1080.1880/0.0.1920.1040/-3440.-150.3440.1400@-3440.-150.3440.1400" timestamp="1607207606767" />
     <state x="740" y="275" key="FileChooserDialogImpl/1920.0.1080.1880/0.0.1920.1040/-3440.-150.3440.1400@0.0.1920.1040" timestamp="1606712675857" />
-    <state x="297" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606964005033">
+    <state width="936" height="279" key="GridCell.Tab.0.bottom" timestamp="1607078859261">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="936" height="279" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1080.1880/-3440.-150.3440.1400@0.0.1920.1040" timestamp="1607078859261" />
+    <state width="936" height="279" key="GridCell.Tab.0.center" timestamp="1607078859261">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="936" height="279" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1080.1880/-3440.-150.3440.1400@0.0.1920.1040" timestamp="1607078859261" />
+    <state width="936" height="279" key="GridCell.Tab.0.left" timestamp="1607078859261">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="936" height="279" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1080.1880/-3440.-150.3440.1400@0.0.1920.1040" timestamp="1607078859261" />
+    <state width="936" height="279" key="GridCell.Tab.0.right" timestamp="1607078859261">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="936" height="279" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1080.1880/-3440.-150.3440.1400@0.0.1920.1040" timestamp="1607078859261" />
+    <state x="297" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1607088332405">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="297" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/1920.0.1080.1880/-3440.-150.3440.1400@0.0.1920.1040" timestamp="1607088332405" />
     <state x="297" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/1920.0.1080.1880/0.0.1920.1040/-3440.-150.3440.1400@0.0.1920.1040" timestamp="1606964005033" />
-    <state x="143" y="230" width="672" height="678" key="search.everywhere.popup" timestamp="1606872649097">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="-3184" y="160" width="1204" height="913" key="search.everywhere.popup" timestamp="1607210359969">
+      <screen x="-3440" y="-150" width="3440" height="1400" />
     </state>
+    <state x="-3184" y="160" width="1204" height="913" key="search.everywhere.popup/1920.0.1080.1880/0.0.1920.1040/-3440.-150.3440.1400@-3440.-150.3440.1400" timestamp="1607210359969" />
     <state x="143" y="230" width="672" height="678" key="search.everywhere.popup/1920.0.1080.1880/0.0.1920.1040/-3440.-150.3440.1400@0.0.1920.1040" timestamp="1606872649097" />
   </component>
 </project>
