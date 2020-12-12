@@ -1,5 +1,5 @@
 import React from 'react';
-import Home from './components/Home';
+import Home from './components/home/Home';
 import Results from './components/Results'
 import {
   BrowserRouter,
@@ -11,12 +11,14 @@ import {
 function App() {
   return (
     <BrowserRouter>
-      <Route path ="/">
-        <Home/>
-      </Route>
-      <Route path ="/Results">
-        <Results/>
-      </Route>
+      <Switch>
+        <Route exact={true} path ="/">
+          <Home/>
+        </Route>
+        <Route path ="/results">
+          <Results/>
+        </Route>
+      </Switch>
     </BrowserRouter>
   );
 }

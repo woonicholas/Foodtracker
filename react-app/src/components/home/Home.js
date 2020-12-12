@@ -13,10 +13,18 @@ class Home extends Component {
 
       this.onChangeQuery = this.onChangeQuery.bind(this);
       this.onChangeLocation = this.onChangeLocation.bind(this);
-      this.onFormSubmit = this.onFormSubmit.bind(this);
+      this.onRestaurantFormSubmit = this.onRestaurantFormSubmit.bind(this);
+      this.onRecipeFormSubmit = this.onRecipeFormSubmit.bind(this);
+      this.onButtonClick = this.onButtonClick.bind(this);
     }
 
-    onFormSubmit = () => {
+    onRestaurantFormSubmit = event => {
+      event.preventDefault();
+      console.log(this.state)
+    }
+
+    onRecipeFormSubmit = event => {
+      event.preventDefault();
       console.log(this.state)
     }
 
@@ -28,6 +36,11 @@ class Home extends Component {
       this.setState({location: event.target.value})
     }
 
+    onButtonClick = event => {
+      event.preventDefault();
+      console.log(this.state)
+    }
+
     render(){
         return (
         <div className='container-fluid' id='background'>
@@ -37,7 +50,9 @@ class Home extends Component {
           </div>
           <div className='row my-4 py-5'></div>
             <div className='row justify-content-center'>
-              <SearchForm onChangeLocation={this.onChangeLocation} onChangeQuery={this.onChangeQuery} />
+              <SearchForm onChangeLocation={this.onChangeLocation} onChangeQuery={this.onChangeQuery} 
+                onSubmitRestaurant={this.onRestaurantFormSubmit} onSubmitRecipe={this.onRecipeFormSubmit} 
+                onButtonClick={this.onButtonClick}/>
             </div>
         </div>
         )
