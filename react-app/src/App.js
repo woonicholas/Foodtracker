@@ -8,15 +8,26 @@ import {
   Route,
   Link
 } from 'react-router-dom';
+import { createBrowserHistory} from 'history';
+
+const history = createBrowserHistory();
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter history={history}>
       <Switch>
-        <Route exact={true} path ="/">
+        <Route exact={true} path ="/"
+        render = {(props) => (
           <Home/>
+        )}
+        >  
         </Route>
-        <Route path ="/results">
+        <Route path ="/results"
+          render={ (props) => (
+            <ResultsRestaurant />
+          )
+          }
+        >
           <ResultsRestaurant/>
         </Route>
         <Route path ="/recipe">

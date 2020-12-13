@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../../css/home.style.css';
 import axios from 'axios';
 import SearchForm from './SearchForm';
+import { withRouter } from 'react-router-dom';
 class Home extends Component {
 
     constructor(props){
@@ -9,7 +10,9 @@ class Home extends Component {
 
       this.state = {
         query: '',
-        location: ''
+        location: '',
+        results:["resultA","resultB"],
+        showResturauntResults: false,
       };
 
       this.onChangeQuery = this.onChangeQuery.bind(this);
@@ -19,22 +22,19 @@ class Home extends Component {
       this.onButtonClick = this.onButtonClick.bind(this);
     }
 
-    onRestaurantFormSubmit = event => {
+    onRestaurantFormSubmit = async event => {
       event.preventDefault();
-      // console.log(this.state)
-      // fetch(encodeURI(`http://localhost:8888/search/restaurant/${event.location}/${event.query}`)).then(
-      //   response => response.json()
-      // ).then(data => {
-      //   console.log("success", data)
-      // }).catch((err) =>{
-      //   console.log("error: ", err)
-      // })
       console.log(encodeURI(`http://localhost:8888/search/restaurant/${this.state.location}/${this.state.query}`))
-      axios.get(encodeURI(`http://localhost:8888/search/restaurant/${this.state.location}/${this.state.query}`))
+      await axios.get(encodeURI(`http://localhost:8888/search/restaurant/${this.state.location}/${this.state.query}`))
         .then( res => {
-          console.log(res)
+          this.setState({results: res.data})
+          console.log(this.state)
         })
-
+      console.log(this.state)
+      this.props.history.push({
+        pathname: 'results',
+        state: {results: this.state.results}
+      })
     }
 
     onRecipeFormSubmit = event => {
@@ -71,4 +71,4 @@ class Home extends Component {
         )
     }
 }
-export default Home;
+export default withRouter(Home);
