@@ -60,6 +60,14 @@ router.get('/search/restaurant-details/:id', function (req, res, next) {
     });
 });
 
+
+router.get('/search/recipe/:query', function (req, res, next) {
+    let query = req.params['query'];
+    getRecipes(query).then(recipe => {
+        res.json(recipe);
+    });
+});
+
 async function getRestaurants(term, location) {
     let businesses = [];
 
@@ -81,6 +89,10 @@ async function getRestaurantDetail(id) {
     return await restaurantByIdApiRequest(id);
 }
 
+async function getRecipes(query) {
+    return await recipeApiRequest(query);
+}
+
 //https://www.yelp.com/developers/documentation/v3/business_search
 function restaurantApiRequest(term, location) {
     let clientID = 'rII8Y9mwHKyzKVlEWGQ2QA';
@@ -97,12 +109,7 @@ function restaurantApiRequest(term, location) {
     params.append('term', term);
     params.append('location', location);
 
-    let termFormatted, locationFormatted, latitudeFormatted, longitudeFormatted, url;
-    //
-    // termFormatted = term.trim().replace(' ', '+');
-    // locationFormatted = (location !== "") ? '&location=' + location.trim().replace(' ', '+') : "";
-    // latitudeFormatted = (latitude !== "") ? '&latitude=' + latitude : "";
-    // longitudeFormatted = (longitude !== "") ? '&longitude=' + longitude : "";
+    let url;
 
     url = 'https://api.yelp.com/v3/businesses/search?' + params;
     console.log(url);
@@ -179,9 +186,13 @@ function recipeApiRequest(query) {
     let apiID = '8f82b31f';
     let apiIdKey = '22c032d075f6f9eea215bacf203e93c4';
 
-    let queryFormatted = query.trim().replace(' ', '+');
-    let url = 'https://api.edamam.com/search?q=' + queryFormatted +
-        '&app_id=' + apiID + '&app_key=' + apiIdKey;
+    let params = new URLSearchParams();
+    params.append('q', query);
+    params.append('app_id', apiID);
+    params.append('app_key', apiIdKey);
+
+
+    let url = 'https://api.edamam.com/search?' + params;
 
     console.log(url);
 
