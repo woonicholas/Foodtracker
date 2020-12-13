@@ -5,22 +5,27 @@ import {Label, FormGroup, Input, Button} from 'reactstrap';
 import { withRouter } from 'react-router-dom';
 
 class ResultsRestaurant extends Component {
-    // constructor(){
-    //     super();
-    //     // this.dataSet = [<Item/>*500]
-    // }
+    constructor(props){
+        super(props);
+        // this.dataSet = [<Item/>*500]
+        this.state = {
+            showResturauntResults: false,
+          };
+    }
     componentDidMount(){
         console.log(this.props.location.state.results)
+        this.setState({showResturauntResults: true})
     }
 
     renderResults(){
-        if(this.props.location.state.results){
-            return  <Item results={this.props.location.state.results[0]}/>
+        if(this.state.showResturauntResults){
+            return  this.props.location.state.results.map((result,index)=> (
+                <Item key={index} results={result}/>
+            ))
         }
     }
 
     render(){
-
         return (
             <div>
                 <div className='container-fluid' >
@@ -39,7 +44,7 @@ class ResultsRestaurant extends Component {
                 </div>
                 <hr></hr>
                 <div className='row justify-content-center' >
-                   {this.renderResults}
+                   {this.renderResults()}
                 </div>
             </div>
         )

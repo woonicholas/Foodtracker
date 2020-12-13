@@ -8,16 +8,16 @@ return (
     <div class = 'container pb-2' >
       <div class = 'row listContainer border rounded'>
         <div class = 'col-4'>
-          <img src = "" alt="food image" className = 'rounded p-2' id = 'listImage'/>
+          <img src = {props.results.image_url} alt="food image" className = 'rounded p-2' id = 'listImage'/>
         </div>
         <div class = 'col-6'>
           <h2 class = "pt-2">{props.results.name}</h2>
           <p>{props.results.categories.map((c,index) => (
             c.title
           ))}</p> 
-          <img src = 'images/location_img.png' class = "pb-1"/> 1 Forest, Irvine, CA 92612
-          <p><img src = 'images/time_img.png'/> Open </p>
-          <p>Rating: 4.5/5</p>
+          <img src = 'images/location_img.png' class = "pb-1"/> {props.results.location[0]}, {props.results.location[1]}, {props.results.location[2]}
+          <p><img src = 'images/time_img.png'/> {"Closed" ? props.results.is_closed : 'Open'} </p>
+          <p>Rating: {props.results.rating}/5</p>
         </div>
       </div>
     </div>
