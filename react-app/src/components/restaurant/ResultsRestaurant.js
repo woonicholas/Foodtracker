@@ -2,12 +2,29 @@ import React, { Component } from 'react';
 import Item from './Item';
 import '../../css/restaurant/results.style.css';
 import {Label, FormGroup, Input, Button} from 'reactstrap';
+import { withRouter } from 'react-router-dom';
 
 class ResultsRestaurant extends Component {
-    // constructor(){
-    //     super();
-    //     // this.dataSet = [<Item/>*500]
-    // }
+    constructor(props){
+        super(props);
+        // this.dataSet = [<Item/>*500]
+        this.state = {
+            showResturauntResults: false,
+          };
+    }
+    componentDidMount(){
+        console.log(this.props.location.state.results)
+        this.setState({showResturauntResults: true})
+    }
+
+    renderResults(){
+        if(this.state.showResturauntResults){
+            return  this.props.location.state.results.map((result,index)=> (
+                <Item key={index} results={result}/>
+            ))
+        }
+    }
+
     render(){
         return (
             <div>
@@ -27,14 +44,11 @@ class ResultsRestaurant extends Component {
                 </div>
                 <hr></hr>
                 <div className='row justify-content-center' >
-                    <Item/>
-                </div>
-                <div className='row justify-content-center' >
-                    <Item/>
+                   {this.renderResults()}
                 </div>
             </div>
         )
     }
 }
 
-export default ResultsRestaurant;
+export default withRouter(ResultsRestaurant);
