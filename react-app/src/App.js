@@ -1,6 +1,7 @@
 import React from 'react';
 import Home from './components/home/Home';
-import Results from './components/Results'
+import ResultsRestaurant from './components/restaurant/ResultsRestaurant';
+import ResultsRecipe from './components/recipe/ResultsRecipe';
 import {
   BrowserRouter,
   Switch,
@@ -16,7 +17,10 @@ function App() {
           <Home/>
         </Route>
         <Route path ="/results">
-          <Results/>
+          <ResultsRestaurant/>
+        </Route>
+        <Route path ="/recipe">
+          <ResultsRecipe/>
         </Route>
       </Switch>
     </BrowserRouter>
