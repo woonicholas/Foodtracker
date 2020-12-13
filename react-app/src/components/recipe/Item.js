@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../../css/recipe/item.style.css';
-import {Card, CardBody, CardTitle, CardSubtitle, CardLink, CardText, CardImg, Col} from 'reactstrap';
+// import {Card, CardBody, CardTitle, CardSubtitle, CardLink, CardText, CardImg, Col} from 'reactstrap';
 
 // Card.propTypes = {}
 

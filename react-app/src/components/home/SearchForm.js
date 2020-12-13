@@ -47,12 +47,12 @@ function SearchForm (props) {
             </Form>
           </TabPane>
           <TabPane tabId="2">
-            <Form className='search' onSubmit={ e => props.onRecipeSubmit(e)}>
+            <Form className='search' onSubmit={ e => props.onSubmitRecipe(e)}>
               <FormGroup>
                 <Label for='queryInput'>Search</Label>
                 <Input type='text' className='form-control' id='queryInput' onChange={e => props.onChangeQuery(e)}/>
               </FormGroup>
-              <Button className='btn btn-light mr-1' type='submit' onClick={e => props.onButtonClick(e)}>Search</Button> 
+              <Button className='btn btn-light mr-1' type='submit' >Search</Button> 
               <Button className='btn btn-success mx-1' >Randomize</Button>
             </Form>
           </TabPane>

@@ -37,10 +37,22 @@ class Home extends Component {
       })
     }
 
-    onRecipeFormSubmit = event => {
+    onRecipeFormSubmit = async event => {
       event.preventDefault();
-      console.log(this.state)
+      console.log("test")
+      console.log(encodeURI(`http://localhost:8888/search/recipe/${this.state.query}`))
+      await axios.get(encodeURI(`http://localhost:8888/search/recipe/${this.state.query}`))
+        .then(res =>{
+          this.setState({results: res.data})
+          console.log(this.state)
+        })
+      console.log(this.state);
+      this.props.history.push({
+        pathname: 'results',
+        state: {results:this.state.results}
+      })
     }
+
 
     onChangeQuery = event =>  {
       this.setState({query: event.target.value})
