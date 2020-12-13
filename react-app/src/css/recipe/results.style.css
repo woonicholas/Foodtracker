@@ -1,0 +1,19 @@
+
+.listContent{
+    font-size: 12px;
+}
+
+.search label {
+    color: white;
+    font-size: 1.5em;
+}
+
+#background-results{
+    background-image:url("../../images/cooking_banner.jpg");
+}
+
+#bottom-bg{
+    /* color: #8D9EA6; */
+    background-color: #f2edd9;
+}
+

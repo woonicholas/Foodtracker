@@ -19,7 +19,7 @@ function SearchForm (props) {
               className={classnames({ active: activeTab === '1' },"tab")}
               onClick={() => { toggle('1'); }}
             >
-              Resturaunt
+              Restaurant
             </NavLink>
           </NavItem>
           <NavItem>

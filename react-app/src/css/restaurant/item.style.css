@@ -1,0 +1,11 @@
+#listImage{
+    height: 200px;
+    width: 200px;
+    margin-left:30px;
+}
+
+.listContainer{
+    width:800px;
+    padding-left: 15px;
+    border-color: #8D9EA6; 
+}
