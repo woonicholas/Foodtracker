@@ -33,7 +33,7 @@ function SearchForm (props) {
         </Nav>
         <TabContent activeTab={activeTab}>
           <TabPane tabId="1">
-            <Form className='search' onSubmit={ e => props.onRestaurantSubmit(e)}>
+            <Form className='search' onSubmit={ e => props.onSubmitRestaurant(e)}>
               <FormGroup>
                 <Label for='queryInput'>Search</Label>
                 <Input type='text' className='form-control' id='queryInput' onChange={e => props.onChangeQuery(e)}/>
@@ -42,7 +42,7 @@ function SearchForm (props) {
                 <Label for='locationInput'>Location</Label>
                 <Input type='text' className='form-control' id='locationInput' onChange={e => props.onChangeLocation(e)}/>
               </FormGroup>
-              <Button className='btn btn-light mr-1' type='submit' onClick={e => props.onButtonClick(e)}>Search</Button> 
+              <Button className='btn btn-light mr-1' type='submit'>Search</Button> 
               <Button className='btn btn-success mx-1'>Randomize</Button>
             </Form>
           </TabPane>
