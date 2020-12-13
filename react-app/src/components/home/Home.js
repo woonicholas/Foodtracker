@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../../css/home.style.css';
+import axios from 'axios';
 import SearchForm from './SearchForm';
 class Home extends Component {
 
@@ -20,7 +21,20 @@ class Home extends Component {
 
     onRestaurantFormSubmit = event => {
       event.preventDefault();
-      console.log(this.state)
+      // console.log(this.state)
+      // fetch(encodeURI(`http://localhost:8888/search/restaurant/${event.location}/${event.query}`)).then(
+      //   response => response.json()
+      // ).then(data => {
+      //   console.log("success", data)
+      // }).catch((err) =>{
+      //   console.log("error: ", err)
+      // })
+      console.log(encodeURI(`http://localhost:8888/search/restaurant/${this.state.location}/${this.state.query}`))
+      axios.get(encodeURI(`http://localhost:8888/search/restaurant/${this.state.location}/${this.state.query}`))
+        .then( res => {
+          console.log(res)
+        })
+
     }
 
     onRecipeFormSubmit = event => {
@@ -38,7 +52,6 @@ class Home extends Component {
 
     onButtonClick = event => {
       event.preventDefault();
-      console.log(this.state)
     }
 
     render(){
