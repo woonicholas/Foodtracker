@@ -7,14 +7,14 @@ import { withRouter } from 'react-router-dom';
 class ResultsRestaurant extends Component {
     constructor(props){
         super(props);
-        // this.dataSet = [<Item/>*500]
         this.state = {
             showResturauntResults: false,
           };
     }
+
     componentDidMount(){
         console.log(this.props.location.state.results)
-        this.setState({showResturauntResults: true})
+        this.setState({showResturauntResults: true, showRecipeResults:false})
     }
 
     renderResults(){
