@@ -13,10 +13,10 @@ return (
         <div class = 'col-6'>
           <h2 class = "pt-2">{props.results.name}</h2>
           <p>{props.results.categories.map((c,index) => (
-            c.title
+            c.title + ". "
           ))}</p> 
-          <img src = 'images/location_img.png' class = "pb-1"/> {props.results.location[0]}, {props.results.location[1]}, {props.results.location[2]}
-          <p><img src = 'images/time_img.png'/> {"Closed" ? props.results.is_closed : 'Open'} </p>
+          <img src = {process.env.PUBLIC_URL + 'location_img.png'} class = "pb-1"/> {props.results.location[0]}, {props.results.location[1]}, {props.results.location[2]}
+          <p><img src = {process.env.PUBLIC_URL + 'time_img.png'}/> {props.results.is_closed ? "Closed" : "Open" } </p>
           <p>Rating: {props.results.rating}/5</p>
         </div>
       </div>
