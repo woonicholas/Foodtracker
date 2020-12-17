@@ -11,20 +11,17 @@ const Item = (props) => {
                 <div class = 'listContainer border rounded'>
                     <div class = 'row'>
                         <div class = 'py-5 col-4'>
-                            <img src = {process.env.PUBLIC_URL + '/recipe_img.jpg'} alt="food image" className = 'rounded p-2' id = 'listImage'/>
+                            <img src = {props.results.image} alt="food image" className = 'rounded p-2' id = 'listImage'/>
                         </div>
                         <div class = 'col-6'>
-                            <h2 class = "pt-2">Chicken Noodle Soup</h2> 
-                            <strong>Time Required:</strong> 90 Minutes
-                            <p><strong>Calories/Serving: </strong> 140 Calories</p>
+                            <h2 class = "pt-2">{props.results.label}</h2> 
+                            <strong>Time Required:</strong> {props.results.totalTime}
+                            <p><strong>Calories/Serving: </strong> {Math.round(props.results.calories)}</p>
                             <div className = "ingredient-text py-1"><strong>Ingredients:</strong> 
-                                <p> • One 3 1/2-pound chicken <br/>
-                                 • 5 carrots<br/>
-                                 • 5 ribs of celery <br/>
-                                 • 1 onion, quartered (for stock, peel on is okay)<br/>
-                                 • 3 cloves of garlic, peel on, cut in half<br/>
-                                 • 2 to 3 sprigs of fresh thyme (or a teaspoon of dried) 1 bunch of parsley<br/>                 
-                                  </p>                                        
+                                <p className = "whitespace"> {props.results.ingredientLines.map((c,index) => (
+                                    "• " + c + "\n"
+                                    ))}
+                                </p>                                        
                             </div>
                             
                         </div>

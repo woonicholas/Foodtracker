@@ -13,6 +13,7 @@ class Home extends Component {
         location: '',
         results:["resultA","resultB"],
         showResturauntResults: false,
+        showRecipeResults:false
       };
 
       this.onChangeQuery = this.onChangeQuery.bind(this);
@@ -39,16 +40,17 @@ class Home extends Component {
 
     onRecipeFormSubmit = async event => {
       event.preventDefault();
-      console.log("test")
+      // console.log("test")
       console.log(encodeURI(`http://localhost:8888/search/recipe/${this.state.query}`))
       await axios.get(encodeURI(`http://localhost:8888/search/recipe/${this.state.query}`))
         .then(res =>{
           this.setState({results: res.data})
+          console.log(res)
           console.log(this.state)
         })
       console.log(this.state);
       this.props.history.push({
-        pathname: 'results',
+        pathname: 'recipe',
         state: {results:this.state.results}
       })
     }

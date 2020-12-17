@@ -52,7 +52,7 @@ function SearchForm (props) {
                 <Label for='queryInput'>Search</Label>
                 <Input type='text' className='form-control' id='queryInput' onChange={e => props.onChangeQuery(e)}/>
               </FormGroup>
-              <Button className='btn btn-light mr-1' type='submit' >Search</Button> 
+              <Button className='btn btn-light mr-1' type='submit' onButtonClick= {e => props.onButtonClick(e)}>Search</Button> 
               <Button className='btn btn-success mx-1' >Randomize</Button>
             </Form>
           </TabPane>

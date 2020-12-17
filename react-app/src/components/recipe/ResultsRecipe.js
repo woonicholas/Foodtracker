@@ -3,8 +3,28 @@ import Item from './Item';
 import '../../css/recipe/results.style.css';
 import {Label, FormGroup, Input, Button} from 'reactstrap';
 import {CardDeck,Col} from 'reactstrap';
+import { withRouter } from 'react-router-dom';
 
 class ResultsRecipe extends Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            showRecipeResults: false,
+        };
+    }
+
+    componentDidMount(){
+        console.log(this.props.location.state.results);
+        this.setState({showRecipeResults: true, showResturauntResults:false})
+    }
+
+    renderResults(){
+        if(this.state.showRecipeResults){
+            return  this.props.location.state.results.map((result,index)=> (
+                <Item key={index} results={result}/>
+            ))
+        }
+    }
 
     render(){
         return (
@@ -21,20 +41,11 @@ class ResultsRecipe extends Component {
                 </div>
                 <hr></hr>
                 <div className= "row sm-3 py-3 justify-content-center">
-                    <Item/>
-                </div>
-                <div className= "row sm-3 py-3 justify-content-center">
-                    <Item/>
-                </div>
-                <div className= "row sm-3 py-3 justify-content-center">
-                    <Item/>
-                </div>
-                <div className= "row sm-3 py-3 justify-content-center">
-                    <Item/>
+                    {this.renderResults()}
                 </div>
             </div>
         )
     }
 }
 
-export default ResultsRecipe;
+export default withRouter(ResultsRecipe);
