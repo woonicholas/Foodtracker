@@ -24,3 +24,7 @@
 .tab:hover{
     color:white;
 }
+
+.logo:hover{
+    cursor: pointer;
+}

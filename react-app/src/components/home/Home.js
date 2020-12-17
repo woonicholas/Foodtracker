@@ -13,6 +13,8 @@ class Home extends Component {
         location: '',
         results:["resultA","resultB"],
         showResturauntResults: false,
+        randomFoodList: ["Noodles","Rice","Chinese","Japanese","Vietnamese","Korean","Indian","Thai","Jamaican","Vegetarian","Mediterranean","Greek","Mexican","South African","American","Chilean",
+            "Russian","French","Italian","Soul Food"],
         showRecipeResults:false
       };
 
@@ -21,6 +23,7 @@ class Home extends Component {
       this.onRestaurantFormSubmit = this.onRestaurantFormSubmit.bind(this);
       this.onRecipeFormSubmit = this.onRecipeFormSubmit.bind(this);
       this.onButtonClick = this.onButtonClick.bind(this);
+      this.randomize = this.randomize.bind(this);
     }
 
     onRestaurantFormSubmit = async event => {
@@ -34,8 +37,18 @@ class Home extends Component {
       console.log(this.state)
       this.props.history.push({
         pathname: 'results',
-        state: {results: this.state.results}
+        state: {
+          results: this.state.results,
+          query: this.state.query,
+          location: this.state.location,
+        }
       })
+    }
+
+    randomize = event => {
+      event.preventDefault();
+      this.setState({query: this.state.randomFoodList[Math.floor(Math.random()*Math.floor(this.state.randomFoodList.length))]});
+      console.log(this.state.query)
     }
 
     onRecipeFormSubmit = async event => {
@@ -51,7 +64,10 @@ class Home extends Component {
       console.log(this.state);
       this.props.history.push({
         pathname: 'recipe',
-        state: {results:this.state.results}
+        state: {
+          results: this.state.results,
+          query: this.state.query,
+        }
       })
     }
 
@@ -72,14 +88,14 @@ class Home extends Component {
         return (
         <div className='container-fluid' id='background'>
           <div className='row header' >
-            <h1 className='py-4 ml-5'>FoodFinder</h1>
+            <h1 className='py-4 ml-5 logo'>FoodFinder</h1>
             <img className='ff-logo mt-2' src= {process.env.PUBLIC_URL + '/FoodFinderLogo.png'}/>
           </div>
           <div className='row my-4 py-5'></div>
             <div className='row justify-content-center'>
               <SearchForm onChangeLocation={this.onChangeLocation} onChangeQuery={this.onChangeQuery} 
                 onSubmitRestaurant={this.onRestaurantFormSubmit} onSubmitRecipe={this.onRecipeFormSubmit} 
-                onButtonClick={this.onButtonClick}/>
+                onButtonClick={this.onButtonClick} query={this.state.query} randomize={this.randomize}/>
             </div>
         </div>
         )
