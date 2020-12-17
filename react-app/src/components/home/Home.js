@@ -14,7 +14,7 @@ class Home extends Component {
         results:["resultA","resultB"],
         showResturauntResults: false,
         randomFoodList: ["Noodles","Rice","Chinese","Japanese","Vietnamese","Korean","Indian","Thai","Jamaican","Vegetarian","Mediterranean","Greek","Mexican","South African","American","Chilean",
-            "russian","French","Italian","Soul Food"],
+            "Russian","French","Italian","Soul Food"],
         showRecipeResults:false
       };
 
@@ -37,7 +37,11 @@ class Home extends Component {
       console.log(this.state)
       this.props.history.push({
         pathname: 'results',
-        state: {results: this.state.results}
+        state: {
+          results: this.state.results,
+          query: this.state.query,
+          location: this.state.location,
+        }
       })
     }
 
@@ -60,7 +64,10 @@ class Home extends Component {
       console.log(this.state);
       this.props.history.push({
         pathname: 'recipe',
-        state: {results:this.state.results}
+        state: {
+          results: this.state.results,
+          query: this.state.query,
+        }
       })
     }
 
@@ -81,7 +88,7 @@ class Home extends Component {
         return (
         <div className='container-fluid' id='background'>
           <div className='row header' >
-            <h1 className='py-4 ml-5'>FoodFinder</h1>
+            <h1 className='py-4 ml-5 logo'>FoodFinder</h1>
             <img className='ff-logo mt-2' src= {process.env.PUBLIC_URL + '/FoodFinderLogo.png'}/>
           </div>
           <div className='row my-4 py-5'></div>

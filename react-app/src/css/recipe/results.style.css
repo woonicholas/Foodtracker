@@ -17,3 +17,6 @@
     background-color: #f2edd9;
 }
 
+.logo:hover{
+    cursor: pointer;
+}
