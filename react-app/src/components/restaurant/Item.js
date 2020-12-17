@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../../css/restaurant/item.style.css';
-// import {} from 'reactstrap';
 
+//returns the item for each item in the restaurants showing the name, type of cuisine, address, open/close
 function Item(props) {
 return (
   <div>

@@ -13,11 +13,13 @@ class ResultsRecipe extends Component {
         };
     }
 
+    //check if the state has been passed to the props
     componentDidMount(){
         console.log(this.props.location.state.results);
         this.setState({showRecipeResults: true, showResturauntResults:false})
     }
 
+    //rendering each item for the recipe and grabs from the Item component
     renderResults(){
         if(this.state.showRecipeResults){
             return  this.props.location.state.results.map((result,index)=> (
@@ -26,12 +28,14 @@ class ResultsRecipe extends Component {
         }
     }
 
+    //routes back to the home page if the FoodFinder button is clicked
     goHome(){
         this.props.history.push({
             pathname: '/',
           })
     }
 
+    //renders the Recipe results page
     render(){
         return (
             <div>
