@@ -222,6 +222,7 @@ function recipeApiRequest(query) {
                     calories: recipe['calories'],
                     totalWeight: recipe['totalWeight'],
                     totalTime: recipe['totalTime'],
+                    url: recipe['url'],
                     digest: recipe['digest'].map((curr, i, arr) => {
                         let d = {
                             label: curr['label'],

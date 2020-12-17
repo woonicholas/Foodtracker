@@ -14,7 +14,7 @@ const Item = (props) => {
                             <img src = {props.results.image} alt="food image" className = 'rounded p-2' id = 'listImage'/>
                         </div>
                         <div class = 'col-6'>
-                            <h2 class = "pt-2">{props.results.label}</h2> 
+                        <a target = "_blank" href = {props.results.url}><h2 class = "pt-2">{props.results.label}</h2></a>
                             <strong>Time Required:</strong> {props.results.totalTime}
                             <p><strong>Calories/Serving: </strong> {Math.round(props.results.calories)}</p>
                             <div className = "ingredient-text py-1"><strong>Ingredients:</strong> 
