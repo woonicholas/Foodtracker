@@ -27,27 +27,6 @@ const Item = (props) => {
                 </div>
             </div>
         </div>
-        // <div className = " py-2">
-            
-        //     <Card>
-        //         <CardBody>
-        //             <CardTitle tag="h5">Chicken Noodle Soup</CardTitle>
-        //             <CardSubtitle>140 Calories</CardSubtitle>
-        //         </CardBody>
-        //         <CardImg src={process.env.PUBLIC_URL + '/recipe_img.jpg'} alt="Card image cap"  className ="card-image px-4"/>
-        //         <CardBody>
-        //             <CardText><strong>Time Required:</strong> 140 Minutes</CardText>
-        //             <CardText className="cardtext"><strong>Ingredients:</strong> One 3 1/2-pound chicken, cut into parts—breast, thighs, backs, wings and neck (if available)
-        //             5 carrots (2 carrots scrubbed clean, but not peeled, cut into 2 inch chunks for the stock, 3 carrots peeled and cut into 1/4-inch rounds for the soup)
-        //             5 ribs of celery (2 ribs cut into 2 inch pieces for the stock, 3 ribs cut into 1/4-inch thick slices for the soup), including celery tops for the stock
-        //             1 onion, quartered (for stock, peel on is okay)
-        //             3 cloves of garlic, peel on, cut in half
-        //             2 to 3 sprigs of fresh thyme (or a teaspoon of dried) 1 bunch of parsley</CardText>
-        //             <CardLink href="https://www.edamam.com/recipe/chicken-noodle-soup-recipes-c1348377891b4c1a81648e55b12ebd00/soup">Recipe Link</CardLink>
-        //         </CardBody>
-        //     </Card>
-
-        // </div>
     );
 }
 
