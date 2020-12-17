@@ -36,24 +36,24 @@ function SearchForm (props) {
             <Form className='search' onSubmit={ e => props.onSubmitRestaurant(e)}>
               <FormGroup>
                 <Label for='queryInput'>Search</Label>
-                <Input type='text' className='form-control' id='queryInput' onChange={e => props.onChangeQuery(e)}/>
+                <Input type='text' className='form-control' value={props.query} id='queryInput' onChange={e => props.onChangeQuery(e)}/>
               </FormGroup>
               <FormGroup>
                 <Label for='locationInput'>Location</Label>
                 <Input type='text' className='form-control' id='locationInput' onChange={e => props.onChangeLocation(e)}/>
               </FormGroup>
               <Button className='btn btn-light mr-1' type='submit'>Search</Button> 
-              <Button className='btn btn-success mx-1'>Randomize</Button>
+              <Button className='btn btn-success mx-1' onClick={e => props.randomize(e)}>Randomize</Button>
             </Form>
           </TabPane>
           <TabPane tabId="2">
             <Form className='search' onSubmit={ e => props.onSubmitRecipe(e)}>
               <FormGroup>
                 <Label for='queryInput'>Search</Label>
-                <Input type='text' className='form-control' id='queryInput' onChange={e => props.onChangeQuery(e)}/>
+                <Input type='text' className='form-control' value={props.query} id='queryInput' onChange={e => props.onChangeQuery(e)}/>
               </FormGroup>
               <Button className='btn btn-light mr-1' type='submit' >Search</Button> 
-              <Button className='btn btn-success mx-1' >Randomize</Button>
+              <Button className='btn btn-success mx-1' onClick={e => props.randomize(e)} >Randomize</Button>
             </Form>
           </TabPane>
         </TabContent>

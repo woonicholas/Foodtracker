@@ -13,6 +13,8 @@ class Home extends Component {
         location: '',
         results:["resultA","resultB"],
         showResturauntResults: false,
+        randomFoodList: ["Noodles","Rice","Chinese","Japanese","Vietnamese","Korean","Indian","Thai","Jamaican","Vegetarian","Mediterranean","Greek","Mexican","South African","American","Chilean",
+            "russian","French","Italian","Soul Food"]
       };
 
       this.onChangeQuery = this.onChangeQuery.bind(this);
@@ -20,6 +22,7 @@ class Home extends Component {
       this.onRestaurantFormSubmit = this.onRestaurantFormSubmit.bind(this);
       this.onRecipeFormSubmit = this.onRecipeFormSubmit.bind(this);
       this.onButtonClick = this.onButtonClick.bind(this);
+      this.randomize = this.randomize.bind(this);
     }
 
     onRestaurantFormSubmit = async event => {
@@ -35,6 +38,12 @@ class Home extends Component {
         pathname: 'results',
         state: {results: this.state.results}
       })
+    }
+
+    randomize = event => {
+      event.preventDefault();
+      this.setState({query: this.state.randomFoodList[Math.floor(Math.random()*Math.floor(this.state.randomFoodList.length))]});
+      console.log(this.state.query)
     }
 
     onRecipeFormSubmit = async event => {
@@ -77,7 +86,7 @@ class Home extends Component {
             <div className='row justify-content-center'>
               <SearchForm onChangeLocation={this.onChangeLocation} onChangeQuery={this.onChangeQuery} 
                 onSubmitRestaurant={this.onRestaurantFormSubmit} onSubmitRecipe={this.onRecipeFormSubmit} 
-                onButtonClick={this.onButtonClick}/>
+                onButtonClick={this.onButtonClick} query={this.state.query} randomize={this.randomize}/>
             </div>
         </div>
         )
