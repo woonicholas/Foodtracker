@@ -25,7 +25,10 @@ class Home extends Component {
       this.onButtonClick = this.onButtonClick.bind(this);
       this.randomize = this.randomize.bind(this);
     }
-
+    /*
+    * Handles the resturaunt form submit and calls the yelp api.
+    * The results received from the yelp api are then passed to the results page
+    */
     onRestaurantFormSubmit = async event => {
       event.preventDefault();
       console.log(encodeURI(`http://localhost:8888/search/restaurant/${this.state.location}/${this.state.query}`))
@@ -44,16 +47,22 @@ class Home extends Component {
         }
       })
     }
-
+    
+    /*
+    * Randomizes the query based on a fixed lit of options 
+    * For future improvements, can use this to ping some api instead
+    */
     randomize = event => {
       event.preventDefault();
       this.setState({query: this.state.randomFoodList[Math.floor(Math.random()*Math.floor(this.state.randomFoodList.length))]});
       console.log(this.state.query)
     }
-
+    /*
+    * Handles the recipe form submit and calls the yelp api.
+    * The results received from the yelp api are then passed to the recipe results page
+    */
     onRecipeFormSubmit = async event => {
       event.preventDefault();
-      // console.log("test")
       console.log(encodeURI(`http://localhost:8888/search/recipe/${this.state.query}`))
       await axios.get(encodeURI(`http://localhost:8888/search/recipe/${this.state.query}`))
         .then(res =>{
@@ -71,15 +80,19 @@ class Home extends Component {
       })
     }
 
-
+    /*
+    * Handles updating the state for the query
+    */
     onChangeQuery = event =>  {
       this.setState({query: event.target.value})
     }
-
+    /*
+    * Handles updating the state for the location
+    */
     onChangeLocation = event =>  {
       this.setState({location: event.target.value})
     }
-
+    // prevents form from reloading the page
     onButtonClick = event => {
       event.preventDefault();
     }
