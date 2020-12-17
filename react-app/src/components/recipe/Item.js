@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import '../../css/recipe/item.style.css';
-// import {Card, CardBody, CardTitle, CardSubtitle, CardLink, CardText, CardImg, Col} from 'reactstrap';
 
-// Card.propTypes = {}
-
+//each recipe item that shows the title, time required, calories/serving, and ingredients
 const Item = (props) => {
     return (
         <div>
-            <div class = 'container pb-2' >
+            <div class = 'container pb-2' > 
                 <div class = 'listContainer border rounded'>
                     <div class = 'row'>
                         <div class = 'py-5 col-4'>
